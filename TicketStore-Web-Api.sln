@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketStore.Storage", "Tick
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketStore.Storage.MS_SQL", "TicketStore.Storage.MS_SQL\TicketStore.Storage.MS_SQL.csproj", "{07154E1F-6BC0-4CD8-AD1C-D3A95F7C792A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketStore.Logic", "TicketStore.Logic\TicketStore.Logic.csproj", "{3C9E1157-3566-4BDA-8767-0E415317ED27}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketStore.Logic", "TicketStore.Logic\TicketStore.Logic.csproj", "{3C9E1157-3566-4BDA-8767-0E415317ED27}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
