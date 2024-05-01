@@ -1,7 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-
 using TicketStore.Logic.Interfaces.Repositories;
 using TicketStore.Storage.DataBase;
 using TicketStore.Storage.Models;
@@ -18,7 +15,6 @@ namespace TicketStore.Logic.Repositories
             return order;
         }
         
-
         public void Delete(DataContext dataContext, Guid Isnode) 
         { 
             var ordeDb = dataContext.Order.FirstOrDefault(x => x.IsnNode == Isnode)

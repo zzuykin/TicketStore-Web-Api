@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DtoModels\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\TicketStore.Storage\TicketStore.Storage.csproj" />
   </ItemGroup>
 
