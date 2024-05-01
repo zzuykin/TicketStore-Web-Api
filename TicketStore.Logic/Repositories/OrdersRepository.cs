@@ -1,14 +1,54 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using TicketStore.Logic.Interfaces.Repositories;
+using TicketStore.Storage.DataBase;
+using TicketStore.Storage.Models;
 
 namespace TicketStore.Logic.Repositories
 {
     public class OrdersRepository : IOrdersRepository
     {
+        public Orders Create(DataContext dataContext, Orders order)
+        {
+            order.IsnNode = Guid.NewGuid();
+            dataContext.Order.Add(order);
+            dataContext.SaveChanges();
+            return order;
+        }
+        
 
+        public void Delete(DataContext dataContext, Guid Isnode) 
+        { 
+            var ordeDb = dataContext.Order.FirstOrDefault(x => x.IsnNode == Isnode)
+                ?? throw new Exception($"User с индификатором {Isnode} не найден");
+
+            dataContext.Order.Remove(ordeDb);
+        }
+
+        public Orders GetById(DataContext dataContext, Guid IsnNode)
+        {
+            var orderDb = dataContext.Order.AsNoTracking().FirstOrDefault(x => x.IsnNode == IsnNode)
+                ?? throw new Exception($"User с индификатором {IsnNode} не найден");
+
+            return orderDb;
+        }
+
+        public Orders Update(DataContext dataContext, Orders order)
+        {
+            var orderDb = dataContext.Order.FirstOrDefault(x => x.IsnNode ==  order.IsnNode)
+                ?? throw new Exception($"User с индификатором {order.IsnNode} не найден");
+
+            var userDb = dataContext.Users.FirstOrDefault(x => x.IsnNode == order.IsnUser)
+                ?? throw new Exception($"User с индификатором {order.IsnUser} не найден");
+
+            orderDb.IsnUser = order.IsnUser;
+            orderDb.OrderNum = order.OrderNum;
+            orderDb.OrderStatus = order.OrderStatus;
+            orderDb.User = userDb;
+
+            return orderDb;
+        }
     }
 }
