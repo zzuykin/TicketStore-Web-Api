@@ -1,7 +1,12 @@
+using TicketStore_Web_Api.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
+builder.Services.AddWebServices();
 
 var app = builder.Build();
 

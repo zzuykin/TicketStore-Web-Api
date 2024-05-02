@@ -12,4 +12,9 @@ public static class OrdersExtentions
     public static int GetOrderNum(this Orders order) {
         return order.OrderNum;
     }
+
+    //public static string GetOrderConcertName(this Orders order)
+    //{
+    //    return order.ConcertName;
+    //}
 }

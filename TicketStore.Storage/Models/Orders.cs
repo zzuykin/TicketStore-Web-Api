@@ -18,6 +18,9 @@ public class Orders
     public int OrderNum { get; set; }
 
     [Required, MaxLength(255)]
+    public string ConcertName { get; set; }
+
+    [Required, MaxLength(255)]
     public string OrderStatus { get; set; }
 
     public virtual User User { get; set; }

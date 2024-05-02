@@ -9,27 +9,25 @@ using TicketStore.Storage.Models;
 
 namespace TicketStore_Web_Api.Features.DtoModels.User
 {
-    public class UserDto
+    public sealed record UserDto
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public Guid IsnNode { get; set; }
+        public Guid IsnNode { get; init; }
 
         [Required, MaxLength(255)]
-        public string ClientName { get; set; }
+        public string ClientName { get; init; }
 
         [Required, MaxLength(255)]
-        public string ClientSurname { get; set; }
+        public string ClientSurname { get; init; }
 
         [Required, MaxLength(255)]
-        public string ClientEmail { get; set; }
+        public string ClientEmail { get; init; }
 
         [Required, MaxLength(255)]
-        public string ClientLastName { get; set; }
+        public string ClientLastName { get; init; }
 
         [Required]
-        public int OrderNum { get; set; }
+        public int OrderNum { get; init; }
 
-        [InverseProperty(nameof(Orders.User))]
-        public virtual ICollection<Orders> Order { get; set; }
     }
 }
