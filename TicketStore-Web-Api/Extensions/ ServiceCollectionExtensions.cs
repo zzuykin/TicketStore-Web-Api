@@ -11,6 +11,7 @@ public  static class ServiceCollectionExtensions
     public static void AddWebServices(this IServiceCollection services)
     {
         services.AddLogicServises();
-        services.AddSingleton<IUserManager, UserManager>();
+
+        services.AddTransient<IUserManager, UserManager>();
     }
 }
