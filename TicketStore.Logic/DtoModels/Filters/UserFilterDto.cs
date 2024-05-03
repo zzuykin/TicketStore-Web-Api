@@ -8,6 +8,6 @@ namespace TicketStore.Logic.DtoModels.Filters
 {
     public sealed record UserFilterDto
     {
-        public int OrderNum;
+        public string Code { get; init; }
     }
 }

@@ -15,7 +15,8 @@ namespace TicketStore.Logic.Services
                 query = query.AsNoTracking();
             }
 
-            query = query.Where(x => x.OrderNum == filter.OrderNum);
+            if (!string.IsNullOrEmpty(filter.Code))
+                query = query.Where(x => x.Code == filter.Code);
 
             return query;
         }

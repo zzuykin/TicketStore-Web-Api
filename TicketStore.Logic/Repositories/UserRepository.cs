@@ -22,8 +22,7 @@ namespace TicketStore.Logic.Repositories
             var userDb = dataContext.Users.FirstOrDefault(x => x.IsnNode == user.IsnNode)
             ?? throw new Exception($"User с индификатором {user.IsnNode} не найден");
 
-
-            userDb.OrderNum = user.OrderNum;
+            userDb.Code = user.Code;
             userDb.ClientEmail = user.ClientEmail;
             userDb.ClientName = user.ClientName;
             userDb.ClientSurname = user.ClientSurname;

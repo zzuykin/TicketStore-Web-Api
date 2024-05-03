@@ -34,7 +34,8 @@ public class UserManager : IUserManager
             ClientName = editUser.ClientName,
             ClientSurname = editUser.ClientName,
             ClientLastName = editUser.ClientName,
-            ClientEmail = editUser.ClientEmail
+            ClientEmail = editUser.ClientEmail,
+            Code = editUser.Code
         };
         _userRepository.Create(_dataContext, user);
         _dataContext.SaveChanges();
@@ -67,7 +68,8 @@ public class UserManager : IUserManager
             ClientName = x.ClientName,
             ClientSurname = x.ClientSurname,
             ClientLastName = x.ClientLastName,
-            ClientEmail = x.ClientEmail
+            ClientEmail = x.ClientEmail,
+            Code = x.Code
         }).ToArray();
 
         return users;

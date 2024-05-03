@@ -11,7 +11,7 @@ namespace TicketStore_Web_Api.Features.DtoModels.User
 {
     public sealed record UserDto
     {
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Key]
         public Guid IsnNode { get; init; }
 
         [Required, MaxLength(255)]
@@ -26,8 +26,8 @@ namespace TicketStore_Web_Api.Features.DtoModels.User
         [Required, MaxLength(255)]
         public string ClientLastName { get; init; }
 
-        [Required]
-        public int OrderNum { get; init; }
+        [Required, MaxLength(20)]
+        public string Code { get; init; }
 
     }
 }

@@ -22,8 +22,4 @@ public  static class UserExtentions
         return string.Empty;
     }
 
-    public static int GetOrderNum(this User user)
-    {
-        return user.OrderNum;
-    }
 }
