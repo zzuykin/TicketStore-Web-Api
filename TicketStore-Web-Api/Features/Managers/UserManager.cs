@@ -1,7 +1,6 @@
 ﻿
 using Microsoft.AspNetCore.Identity;
 using TicketStore.Logic.Interfaces.Repositories;
-using TicketStore_Web_Api.Features.Interfaces;
 using TicketStore.Storage.DataBase;
 using TicketStore_Web_Api.Features.DtoModels.User;
 using TicketStore.Logic.DtoModels.Filters;
@@ -9,6 +8,7 @@ using TicketStore.Storage.Models;
 using TicketStore.Logic.Repositories;
 using AutoMapper;
 using TicketStore.Logic.Interfaces.Services;
+using TicketStore_Web_Api.Features.Interfaces.Managers;
 namespace TicketStore_Web_Api.Features.Managers;
 
 public class UserManager : IUserManager

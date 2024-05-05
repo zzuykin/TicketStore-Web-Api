@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using TicketStore.Logic.DtoModels.Filters;
 using TicketStore_Web_Api.Features.DtoModels.User;
 
-namespace TicketStore_Web_Api.Features.Interfaces
+namespace TicketStore_Web_Api.Features.Interfaces.Managers
 {
     public interface IUserManager
     {

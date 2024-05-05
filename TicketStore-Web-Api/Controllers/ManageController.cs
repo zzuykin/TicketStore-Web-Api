@@ -3,7 +3,7 @@
 using Microsoft.AspNetCore.Mvc;
 using TicketStore.Logic.DtoModels.Filters;
 using TicketStore_Web_Api.Features.DtoModels.User;
-using TicketStore_Web_Api.Features.Interfaces;
+using TicketStore_Web_Api.Features.Interfaces.Managers;
 
 namespace TicketStore_Web_Api.Controllers;
 
@@ -43,7 +43,7 @@ public class ManageController: Controller
         try
         {
 			var UserId = userManager.Create(user);
-            return View(User);
+            return RedirectToAction(nameof(OrdersController.Order), OrdersController.Orders, new { userId = UserId });
 		}
 		catch (Exception ex)
 		{
