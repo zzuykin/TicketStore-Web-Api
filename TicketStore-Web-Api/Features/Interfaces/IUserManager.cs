@@ -10,7 +10,7 @@ namespace TicketStore_Web_Api.Features.Interfaces
 {
     public interface IUserManager
     {
-        void Create(EditUser editUser);
+        Guid Create(EditUser editUser);
 
         void Update(EditUser editUser);
 

@@ -7,5 +7,5 @@ namespace TicketStore.Logic.Interfaces.Services;
 
 public interface IUserService
 {
-    IQueryable<User> GetUserQueryble(DataContext dataContext, UserFilterDto filter, bool asNoTracking);
+	IQueryable<User> GetUserQueryable(DataContext context, UserFilterDto filter, bool asNoTracking = true);
 }

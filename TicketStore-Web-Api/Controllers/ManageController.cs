@@ -10,6 +10,7 @@ namespace TicketStore_Web_Api.Controllers;
 [Route("Manage")]
 public class ManageController: Controller
 {
+    public const string Manage = "Manage";
     private readonly IUserManager userManager;
 
     public ManageController(IUserManager userManager)
@@ -20,8 +21,9 @@ public class ManageController: Controller
     [HttpGet(nameof(User), Name = nameof(User))]
     public async Task<ActionResult> User()
     {
-        var user = userManager.GetListUsers(new UserFilterDto()).FirstOrDefault();
-        return View(user);
+        //var user = userManager.GetListUsers(new UserFilterDto()).FirstOrDefault();
+        //return View(user);
+        return View();
     }
 
     [HttpPost(nameof(CreateUser), Name = nameof(CreateUser))]
@@ -34,11 +36,21 @@ public class ManageController: Controller
     }
 
     [HttpPost(nameof(CreateUserView), Name = nameof(CreateUserView))]
-    public async Task<ActionResult> CreateUserView([FromBody] EditUser user)
+    public async Task<ActionResult> CreateUserView(EditUser user)
     {
         if (!ModelState.IsValid)
-            return View(nameof(User), ModelState);
-        userManager.Create(user);
+            return View(nameof(User), user);
+        try
+        {
+			var UserId = userManager.Create(user);
+            return View(User);
+		}
+		catch (Exception ex)
+		{
+			ModelState.AddModelError(string.Empty, ex.Message);
+			return View(nameof(CreateUserView), user);
+		}
+		userManager.Create(user);
         return View();
     }
 

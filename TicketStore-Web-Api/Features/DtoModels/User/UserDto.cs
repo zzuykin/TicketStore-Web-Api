@@ -26,8 +26,5 @@ namespace TicketStore_Web_Api.Features.DtoModels.User
         [Required, MaxLength(255)]
         public string ClientLastName { get; init; }
 
-        [Required, MaxLength(20)]
-        public string Code { get; init; }
-
     }
 }

@@ -1,1 +1,61 @@
-﻿Hi :(
+﻿@page
+@model IndexModel
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    .home_body {
+        background: #f6f1f1;
+        ;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+    }
+
+    .home_welcome {
+        text-align: center;
+        font-weight: bold;
+        font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        margin-bottom: 20px;
+        width: 500px;
+    }
+
+    .home_continue {
+        background: #222222;
+        padding: 10px 25px;
+        border-radius: 4px;
+        font-size: 14px;
+        line-height: 18px;
+        text-align: center;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #FFFFFF;
+        margin-right: 10px;
+    }
+
+    .home_content {
+        display: flex;
+        flex-direction: column; /* Содержимое располагается в колонке */
+        align-items: center; /* Центрирование по горизонтали */
+
+    }
+
+    .home_container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        /* Делаем контейнер по высоте родительского элемента (.home_body) */
+    }
+</style>
+<meta charset="utf-8" />
+<head>
+	<title>Бронь билетов на концерты</title>
+</head>
+<body class="home_body">
+	<div class="home_container">
+		<div class="home_content">
+			<h1 class="home_welcome">Забронируйте места на концерты удобно и прямо сейчас!</h1>
+			<a class="home_continue" href="@Url.Action("User","Manage")">Забронировать билет</a>
+		</div>
+	</div>
+</body>

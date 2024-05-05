@@ -7,18 +7,15 @@ namespace TicketStore.Logic.Services
 {
     public class UserService: IUserService
     {
-        public IQueryable<User> GetUserQueryble(DataContext dataContext, UserFilterDto filter, bool asNoTracking) 
-        {
-            IQueryable<User> query = dataContext.Users;
-            if (asNoTracking)
-            {
-                query = query.AsNoTracking();
-            }
+		public IQueryable<User> GetUserQueryable(DataContext context, UserFilterDto filter, bool asNoTracking = true)
+		{
+			IQueryable<User> query = context.Users;
 
-            if (!string.IsNullOrEmpty(filter.Code))
-                query = query.Where(x => x.Code == filter.Code);
-
-            return query;
-        }
-    }
+			if (asNoTracking)
+			{
+				query = query.AsNoTracking();
+			}
+			return query;
+		}
+	}
 }

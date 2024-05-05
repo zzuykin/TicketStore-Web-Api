@@ -26,19 +26,20 @@ public class UserManager : IUserManager
         _dataContext = dataContext;
     }
 
-    public void Create(EditUser editUser)
+    public Guid Create(EditUser editUser)
     {
         var user = new User
         {
             IsnNode = editUser.IsnNode,
             ClientName = editUser.ClientName,
-            ClientSurname = editUser.ClientName,
-            ClientLastName = editUser.ClientName,
+            ClientSurname = editUser.ClientSurname,
+            ClientLastName = editUser.ClientLastName,
             ClientEmail = editUser.ClientEmail,
-            Code = editUser.Code
         };
         _userRepository.Create(_dataContext, user);
         _dataContext.SaveChanges();
+
+        return user.IsnNode;
     }
 
     public void Update(EditUser editUser)
@@ -62,14 +63,13 @@ public class UserManager : IUserManager
 
     public UserDto[] GetListUsers(UserFilterDto userFilterDto)
     {
-        var users = _userService.GetUserQueryble(_dataContext, userFilterDto, true).Select(x => new UserDto
+        var users = _userService.GetUserQueryable(_dataContext, userFilterDto, true).Select(x => new UserDto
         {
             IsnNode = x.IsnNode,
             ClientName = x.ClientName,
             ClientSurname = x.ClientSurname,
             ClientLastName = x.ClientLastName,
             ClientEmail = x.ClientEmail,
-            Code = x.Code
         }).ToArray();
 
         return users;
