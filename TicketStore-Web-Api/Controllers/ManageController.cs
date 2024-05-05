@@ -44,7 +44,7 @@ public class ManageController: Controller
         {
 			var UserId = userManager.Create(user);
             return RedirectToAction(nameof(OrdersController.Order), OrdersController.Orders, new { userId = UserId });
-		}
+        }
 		catch (Exception ex)
 		{
 			ModelState.AddModelError(string.Empty, ex.Message);

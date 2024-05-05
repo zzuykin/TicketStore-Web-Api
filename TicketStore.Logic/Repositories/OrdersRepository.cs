@@ -12,7 +12,7 @@ namespace TicketStore.Logic.Repositories
             if (dataContext.Order.Any())
             {
                 int maxOrderNum = dataContext.Order.Max(x => x.OrderNum);
-                order.OrderNum = maxOrderNum;
+                order.OrderNum = maxOrderNum+1;
             }
             else
             {

@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
+using TicketStore.Storage.Models;
 using TicketStore_Web_Api.Features.DtoModels.Order;
 using TicketStore_Web_Api.Features.Interfaces.Managers;
 namespace TicketStore_Web_Api.Controllers;
@@ -47,7 +48,7 @@ public class OrdersController : Controller
         try
         {
             _orderManager.Create(order);
-            return View();
+            return RedirectToAction(nameof(HomeController.Index), "Home");
         }
         catch(Exception ex)
         {
