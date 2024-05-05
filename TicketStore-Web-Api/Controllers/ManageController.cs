@@ -50,8 +50,6 @@ public class ManageController: Controller
 			ModelState.AddModelError(string.Empty, ex.Message);
 			return View(nameof(CreateUserView), user);
 		}
-		userManager.Create(user);
-        return View();
     }
 
     [HttpPut(nameof(UpdateUser), Name = nameof(UpdateUser))]

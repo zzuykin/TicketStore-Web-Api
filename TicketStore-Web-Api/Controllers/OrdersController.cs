@@ -38,13 +38,12 @@ public class OrdersController : Controller
     }
 
     [HttpPost(nameof(CreateOrderView),Name = nameof(CreateOrderView))]
-    
     public async Task <ActionResult> CreateOrderView(EditOrder order)
     {
-        if (!ModelState.IsValid)
-        {
-            return View(nameof(Order), order);
-        }
+        //if (!ModelState.IsValid)
+        //{
+        //    return View(nameof(Order), order);
+        //}
         try
         {
             _orderManager.Create(order);
@@ -56,6 +55,5 @@ public class OrdersController : Controller
             return View(nameof(CreateOrderView), order);
         }
     }
-
 }
 

@@ -24,5 +24,6 @@ public class Orders
     public string OrderStatus { get; set; }
 
     public virtual User User { get; set; }
+
 }
 

@@ -9,7 +9,17 @@ namespace TicketStore.Logic.Repositories
     {
         public Orders Create(DataContext dataContext, Orders order)
         {
+            if (dataContext.Order.Any())
+            {
+                int maxOrderNum = dataContext.Order.Max(x => x.OrderNum);
+                order.OrderNum = maxOrderNum;
+            }
+            else
+            {
+                order.OrderNum = 0;
+            }
             order.IsnNode = Guid.NewGuid();
+            order.OrderStatus = "Забронировано";
             dataContext.Order.Add(order);
             dataContext.SaveChanges();
             return order;

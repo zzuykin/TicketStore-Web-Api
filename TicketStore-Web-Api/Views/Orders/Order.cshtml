@@ -2,7 +2,79 @@
 @using TicketStore_Web_Api.Features.DtoModels.Order
 @model EditOrder
 
-
 <style>
 
+    .makeOrderBody {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* Чтобы содержимое было по центру по вертикали */
+    }
+
+
+    .ConcertBlocks {
+        display: flex; /* Размещаем элементы в ряд */
+        justify-content: center; /* Центрируем элементы по горизонтали */
+        flex-wrap: wrap; /* Разрешаем перенос элементов на следующую строку */
+    }
+
+    .ItemConcert {
+        margin: 10px; /* Отступ между элементами */
+        padding: 20px; /* Заполнение внутри элементов */
+        border-radius: 10px; /* Закругляем углы */
+        background-color: #f0f0f0; /* Цвет фона */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Добавляем тень */
+    }
+
+        .ItemConcert p {
+            font-weight: bold; /* Увеличиваем жирность текста */
+            font-size: 18px; /* Увеличиваем размер текста */
+        }
+
+    .btn {
+        display: none; /* По умолчанию кнопка скрыта */
+        margin-top: 20px; /* Добавляем отступ сверху */
+    }
+
 </style>
+
+<body class="makeOrderBody">
+    <div class="container">
+        <h2>Выберите концерт</h2>
+        @using (Html.BeginForm(nameof(OrdersController.CreateOrderView), OrdersController.Orders, FormMethod.Post))
+        {
+            @Html.HiddenFor(x => x.IsnUser)
+            <div class="ConcertBlocks d-flex justify-content-center">
+                <div class="ItemConcert mx-2 p-3 rounded">
+                    <p>Концерт 1</p>
+                    <div class="concert_info">
+                        Немного интересной информации о концерте 1
+                    </div>
+                    @Html.RadioButtonFor(model => model.ConcertName, "Concert1") <!-- Привязываем выбор к модели -->
+                </div>
+                <div class="ItemConcert mx-2 p-3 rounded">
+                    <p>Концерт 2</p>
+                    <div class="concert_info">
+                        Немного интересной информации о концерте 2
+                    </div>
+                    @Html.RadioButtonFor(model => model.ConcertName, "Concert2") <!-- Привязываем выбор к модели -->
+                </div>
+            </div>
+            <div class="d-flex justify-content-center">
+                <!-- Создаем flex-контейнер для кнопки -->
+                <button type="submit" class="btn btn-primary">Продолжить</button>
+            </div>
+        }
+    </div>
+
+    <script>
+        // Показать кнопку, когда хотя бы один радио-баттон выбран
+        document.addEventListener('change', function (event) {
+            if (event.target.matches('input[type="radio"]')) {
+                var btn = document.querySelector('.btn');
+                btn.style.display = 'block';
+            }
+        });
+    </script>
+
+</body>
