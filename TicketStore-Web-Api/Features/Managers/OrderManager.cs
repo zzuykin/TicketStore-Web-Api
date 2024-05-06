@@ -23,7 +23,7 @@ public class OrderManager : IOrdersManager
         _dataContext = dataContext;
     }
 
-    public void Create(EditOrder editOrder)
+    public Guid Create(EditOrder editOrder)
     {
         if (!_dataContext.Users.Any(x => x.IsnNode == editOrder.IsnUser))
         {
@@ -39,6 +39,7 @@ public class OrderManager : IOrdersManager
         };
         _orderRepository.Create(_dataContext, order);
         _dataContext.SaveChanges();
+        return order.IsnNode;
     }
 
     public void Update(EditOrder editOrder)

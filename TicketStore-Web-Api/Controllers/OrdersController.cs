@@ -47,8 +47,8 @@ public class OrdersController : Controller
         //}
         try
         {
-            _orderManager.Create(order);
-            return RedirectToAction(nameof(HomeController.Index), "Home");
+            Guid OrderId = _orderManager.Create(order);
+            return RedirectToAction(nameof(UserOrderController.UserOrderInfo), "UserOrder", new { orderId = OrderId });
         }
         catch(Exception ex)
         {

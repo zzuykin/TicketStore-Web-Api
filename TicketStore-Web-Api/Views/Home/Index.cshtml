@@ -4,7 +4,7 @@
 <html lang="en">
 <style>
     .home_body {
-        background: #f6f1f1;
+        background-color: aliceblue;
         ;
         margin: 0;
         padding: 0;
@@ -30,12 +30,18 @@
         text-transform: uppercase;
         color: #FFFFFF;
         margin-right: 10px;
+        text-decoration: none; /* Убираем подчеркивание */
+        transition: background-color 0.3s ease; /* Добавляем плавный переход */
     }
+
+        .home_continue:hover {
+            background-color: #CCCCCC; 
+        }
 
     .home_content {
         display: flex;
-        flex-direction: column; /* Содержимое располагается в колонке */
-        align-items: center; /* Центрирование по горизонтали */
+        flex-direction: column; 
+        align-items: center; 
 
     }
 
@@ -55,7 +61,7 @@
 	<div class="home_container">
 		<div class="home_content">
 			<h1 class="home_welcome">Купите места на концерты удобно и прямо сейчас!</h1>
-			<a class="home_continue" href="@Url.Action("User","Manage")">Забронировать билет</a>
+			<a class="home_continue" href="@Url.Action("User","Manage")">Купить билет</a>
 		</div>
 	</div>
 </body>

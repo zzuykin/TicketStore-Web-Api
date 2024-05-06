@@ -7,7 +7,7 @@ namespace TicketStore_Web_Api.Features.Interfaces.Managers;
 
 public interface IOrdersManager
 {
-    void Create(EditOrder editOrder);
+    Guid Create(EditOrder editOrder);
 
     void Update(EditOrder editOrder);
 
