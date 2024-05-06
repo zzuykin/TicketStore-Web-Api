@@ -13,6 +13,7 @@ public  static class ServiceCollectionExtensions
         services.AddLogicServises();
         services.AddTransient<IUserManager, UserManager>();
         services.AddTransient<IOrdersManager, OrderManager>();
+        services.AddTransient<IConcertManager, ConcertManager>();
         services.AddTransient<IUserOrderManager, UserOrderManager>();
     }
 }

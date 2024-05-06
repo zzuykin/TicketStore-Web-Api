@@ -1,5 +1,6 @@
 ﻿
 using System.ComponentModel.DataAnnotations;
+using TicketStore.Storage.Models;
 
 namespace TicketStore_Web_Api.Features.DtoModels.Order
 {
@@ -18,6 +19,7 @@ namespace TicketStore_Web_Api.Features.DtoModels.Order
         [Required, MaxLength(255)]
         public string OrderStatus { get; init; }
 
+        public List<Concert> concerts { get; init; }
 
-    }
+	}
 }

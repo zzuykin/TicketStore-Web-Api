@@ -49,7 +49,7 @@
                 <div class="ItemConcert mx-2 p-3 rounded">
                     <p>Концерт 1</p>
                     <div class="concert_info">
-                        Немного интересной информации о концерте 1
+                        Немного интересной информации о концерте 1 Места: @Model.concerts[0].AvailableTickets
                     </div>
                     @Html.RadioButtonFor(model => model.ConcertName, "Concert1") <!-- Привязываем выбор к модели -->
                 </div>

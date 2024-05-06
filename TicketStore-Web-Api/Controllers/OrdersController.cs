@@ -12,19 +12,23 @@ public class OrdersController : Controller
     public const string Orders = "Orders";
 
     private readonly IOrdersManager _orderManager;
+    private readonly IConcertManager _concertManager;
 
-    public OrdersController(IOrdersManager orderManager)
-    {
-        _orderManager = orderManager;
-    }
+	public OrdersController(IOrdersManager orderManager, IConcertManager concertManager)
+	{
+		_orderManager = orderManager;
+		_concertManager = concertManager;
+	}
 
-    [HttpGet(nameof(Order), Name = nameof(Order))]
+	[HttpGet(nameof(Order), Name = nameof(Order))]
     public async Task <ActionResult> Order(Guid UserId)
     {
-        var editOrder = new EditOrder
-        {
-            IsnUser = UserId
-        };
+        //var editOrder = new EditOrder
+        //{
+
+        //    IsnUser = UserId
+        //};
+        var editOrder = _concertManager.GetEditOrderForMakeOrder(UserId);
         return View(editOrder);
     }
 
@@ -45,6 +49,7 @@ public class OrdersController : Controller
         //{
         //    return View(nameof(Order), order);
         //}
+        //надо что то сделать с колличеством заказов!
         try
         {
             Guid OrderId = _orderManager.Create(order);
