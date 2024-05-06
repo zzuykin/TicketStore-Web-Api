@@ -7,7 +7,7 @@
     .makeOrderBody {
         display: flex;
         justify-content: center;
-        align-items: center;
+/*         align-items: center; */
         height: 100vh; /* Чтобы содержимое было по центру по вертикали */
         background-color: aliceblue;
     }
@@ -25,6 +25,7 @@
         border-radius: 10px; /* Закругляем углы */
         background-color: #f0f0f0; /* Цвет фона */
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Добавляем тень */
+        min-width:350px;
     }
 
         .ItemConcert p {
@@ -45,22 +46,21 @@
         @using (Html.BeginForm(nameof(OrdersController.CreateOrderView), OrdersController.Orders, FormMethod.Post))
         {
             @Html.HiddenFor(x => x.IsnUser)
-            <div class="ConcertBlocks d-flex justify-content-center">
-                <div class="ItemConcert mx-2 p-3 rounded">
-                    <p>Концерт 1</p>
-                    <div class="concert_info">
-                        Немного интересной информации о концерте 1 Места: @Model.concerts[0].AvailableTickets
+           <div class="ConcertBlocks d-flex justify-content-center">
+                @for (var i = 0; i < @Model.concerts.Count; i++)
+                {
+                    <div class="ItemConcert mx-2 p-3 rounded">
+                        <p>@Model.concerts[i].ConcertName</p>
+                        <div class="concert_info">
+                            Свободные места: @Model.concerts[i].AvailableTickets
+                        </div>
+                        <div class="concert_info">
+                            Цена билета: @Model.concerts[i].TicketPrice RUB
+                        </div>
+                        @Html.RadioButtonFor(model => model.ConcertName, @Model.concerts[i].ConcertName)
                     </div>
-                    @Html.RadioButtonFor(model => model.ConcertName, "Concert1") <!-- Привязываем выбор к модели -->
-                </div>
-                <div class="ItemConcert mx-2 p-3 rounded">
-                    <p>Концерт 2</p>
-                    <div class="concert_info">
-                        Немного интересной информации о концерте 2
-                    </div>
-                    @Html.RadioButtonFor(model => model.ConcertName, "Concert2") <!-- Привязываем выбор к модели -->
-                </div>
-            </div>
+                }
+            </div> 
             <div class="d-flex justify-content-center">
                 <!-- Создаем flex-контейнер для кнопки -->
                 <button type="submit" class="btn btn-primary">Продолжить</button>
