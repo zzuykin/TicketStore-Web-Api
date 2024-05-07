@@ -17,7 +17,7 @@ public class User{
     [Required, MaxLength(255)]
     public string ClientEmail { get; set; }
 
-    [Required, MaxLength(255)]
+    [Required,MaxLength(255)]
     public string ClientLastName { get; set; }
 
     [InverseProperty(nameof(Orders.User))]

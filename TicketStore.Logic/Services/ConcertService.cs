@@ -14,6 +14,8 @@ namespace TicketStore.Logic.Services
 			IQueryable<Concert> query = dataContext.Concerts.AsNoTracking();
 			return query;
 		}
+
+
 		public int GetAvaible(DataContext dataContext,int Number)
         {
             var concert = dataContext.Concerts.FirstOrDefault(x => x.Number == Number);
@@ -33,7 +35,5 @@ namespace TicketStore.Logic.Services
             }
             return -1;
         }
-
-
     }
 }

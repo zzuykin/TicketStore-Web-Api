@@ -45,14 +45,11 @@ public class OrdersController : Controller
     [HttpPost(nameof(CreateOrderView),Name = nameof(CreateOrderView))]
     public async Task <ActionResult> CreateOrderView(EditOrder order)
     {
-        //if (!ModelState.IsValid)
-        //{
-        //    return View(nameof(Order), order);
-        //}
         //надо что то сделать с колличеством заказов!
         try
         {
             Guid OrderId = _orderManager.Create(order);
+           _concertManager.ChangeCountOfAvaible(order);
             return RedirectToAction(nameof(UserOrderController.UserOrderInfo), "UserOrder", new { orderId = OrderId });
         }
         catch(Exception ex)

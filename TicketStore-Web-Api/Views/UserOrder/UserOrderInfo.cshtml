@@ -55,43 +55,52 @@
 	.UserModeInfo p{
 		color:coral;
 	}
+
+	.btn {
+		margin-top: 30px;
+	}
 </style>
 <div class="UserInfoBody">
 	<div class="container">
-		<h2>Инфорамация о заказе</h2>
-		<div class="UserInfoContainerBox">
-			<div class="UserInfoBox">
-				<div class="UserName">Ваше имя:</div>
-				<div class="UserModeInfo">@Model.ClientName</div>
-			</div>
-			<div class="UserInfoBox">
-				<div class="UserSurname">Ваша фамилия:</div>
-				<div class="UserModeInfo">@Model.ClientSurname</div>
-			</div>
-			<div class="UserInfoBox">
-				<div class="UserLastName">Ваше отчество:</div>
-				<div class="UserModeInfo">@Model.ClientLastName</div>
-			</div>
-			<div class="UserInfoBox">
-				<div class="UserEmail">Ваш Email:</div>
-				<div class="UserModeInfo">@Model.ClientEmail</div>
-			</div>
-			<div class="UserInfoBox">
-				<div class="ConcetName">Концерт:</div>
-				<div class="UserModeInfo">@Model.ConcertName</div>
-			</div>
-			<div class="UserInfoBox">
-				<div class="OrderStatus">Статус заказа:</div>
-				<div class="UserModeInfo"><p>@Model.OrderStatus</p></div>
-			</div>
-			<div class="UserInfoBox">
-				<div class="OrderNum">Номер заказа</div>
-				<div class="UserModeInfo">
-					<div class="orderNum">@Model.OrderNum</div>
-					<div>Запомните номер заказа, мы его вам также прислали на Email!</div>
+		@using (Html.BeginForm(nameof(UserOrderController.UserOrderInfoView), UserOrderController.UserOrder, FormMethod.Post))
+		{
+			<h2>Инфорамация о заказе</h2>
+			<div class="UserInfoContainerBox">
+				<div class="UserInfoBox">
+					<div class="UserName">Ваше имя:</div>
+					<div class="UserModeInfo">@Model.ClientName</div>
 				</div>
-				
+				<div class="UserInfoBox">
+					<div class="UserSurname">Ваша фамилия:</div>
+					<div class="UserModeInfo">@Model.ClientSurname</div>
+				</div>
+				<div class="UserInfoBox">
+					<div class="UserLastName">Ваше отчество:</div>
+					<div class="UserModeInfo">@Model.ClientLastName</div>
+				</div>
+				<div class="UserInfoBox">
+					<div class="UserEmail">Ваш Email:</div>
+					<div class="UserModeInfo">@Model.ClientEmail</div>
+				</div>
+				<div class="UserInfoBox">
+					<div class="ConcetName">Концерт:</div>
+					<div class="UserModeInfo">@Model.ConcertName</div>
+				</div>
+				<div class="UserInfoBox">
+					<div class="OrderStatus">Статус заказа:</div>
+					<div class="UserModeInfo"><p>@Model.OrderStatus</p></div>
+				</div>
+				<div class="UserInfoBox">
+					<div class="OrderNum">Номер заказа</div>
+					<div class="UserModeInfo">
+						<div class="orderNum">@Model.OrderNum</div>
+						<div>Запомните номер заказа, мы его вам также прислали на Email!</div>
+					</div>
+				</div>
 			</div>
-		</div>
+			<div class="d-flex justify-content-center">
+				<button type="submit" class="btn btn-primary">Продолжить</button>
+			</div>
+		}
 	</div>
 </div>

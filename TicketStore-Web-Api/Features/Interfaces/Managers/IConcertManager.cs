@@ -7,4 +7,6 @@ namespace TicketStore_Web_Api.Features.Interfaces.Managers;
 public interface IConcertManager
 {
 	EditOrder GetEditOrderForMakeOrder(Guid UserId);
+
+	void ChangeCountOfAvaible(EditOrder editOrder, bool minus = true);
 }

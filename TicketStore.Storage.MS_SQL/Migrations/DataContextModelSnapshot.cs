@@ -24,6 +24,12 @@ namespace TicketStore.Storage.MS_SQL.Migrations
 
             modelBuilder.Entity("TicketStore.Storage.Models.Concert", b =>
                 {
+                    b.Property<int>("Number")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Number"));
+
                     b.Property<int>("AvailableTickets")
                         .HasColumnType("int");
 
@@ -32,11 +38,10 @@ namespace TicketStore.Storage.MS_SQL.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<int>("Number")
-                        .HasColumnType("int");
-
                     b.Property<int>("TicketPrice")
                         .HasColumnType("int");
+
+                    b.HasKey("Number");
 
                     b.HasIndex("ConcertName");
 
@@ -82,7 +87,6 @@ namespace TicketStore.Storage.MS_SQL.Migrations
                         .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("ClientLastName")
-                        .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 

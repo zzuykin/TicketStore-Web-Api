@@ -6,10 +6,10 @@ using Microsoft.EntityFrameworkCore;
 namespace TicketStore.Storage.Models;
 
 [Index(nameof(ConcertName))]
-[Keyless]
+//[Keyless]
 public class Concert
 {
-    [Required]
+    [Key]
     public int Number { get; set; }
 
     [Required, MaxLength(255)]

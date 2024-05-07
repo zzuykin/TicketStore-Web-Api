@@ -26,5 +26,7 @@ namespace TicketStore_Web_Api.Features.DtoModels.Order
 
 		public List<Concert> concerts { get; init; }
 
+		public List<int> AvaibleTicetNow { get; init; }
+
 	}
 }
