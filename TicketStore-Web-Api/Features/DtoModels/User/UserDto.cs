@@ -21,6 +21,7 @@ namespace TicketStore_Web_Api.Features.DtoModels.User
         public string ClientSurname { get; init; }
 
         [Required, MaxLength(255)]
+        [EmailAddress(ErrorMessage = "Пожалуйста, введите корректный адрес электронной почты.")]
         public string ClientEmail { get; init; }
 
         [Required, MaxLength(255)]

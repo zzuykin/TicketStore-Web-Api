@@ -8,34 +8,39 @@
         display: flex;
         justify-content: center;
 /*         align-items: center; */
-        height: 100vh; /* Чтобы содержимое было по центру по вертикали */
+        height: 100vh; 
         background-color: aliceblue;
     }
 
 
     .ConcertBlocks {
-        display: flex; /* Размещаем элементы в ряд */
-        justify-content: center; /* Центрируем элементы по горизонтали */
-        flex-wrap: wrap; /* Разрешаем перенос элементов на следующую строку */
+        display: flex;
+        justify-content: center; 
+        flex-wrap: wrap; 
     }
 
     .ItemConcert {
-        margin: 10px; /* Отступ между элементами */
-        padding: 20px; /* Заполнение внутри элементов */
-        border-radius: 10px; /* Закругляем углы */
-        background-color: #f0f0f0; /* Цвет фона */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Добавляем тень */
+        margin: 10px;
+        padding: 20px; 
+        border-radius: 10px; 
+        background-color: #f0f0f0;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
         min-width:350px;
+        transition: transform 0.3s ease;
     }
 
         .ItemConcert p {
-            font-weight: bold; /* Увеличиваем жирность текста */
-            font-size: 18px; /* Увеличиваем размер текста */
+            font-weight: bold; 
+            font-size: 18px; 
+        }
+
+        .ItemConcert:hover {
+            transform: scale(1.1);
         }
 
     .btn {
-        display: none; /* По умолчанию кнопка скрыта */
-        margin-top: 20px; /* Добавляем отступ сверху */
+        display: none; 
+        margin-top: 20px; 
     }
 
 </style>
@@ -49,20 +54,22 @@
            <div class="ConcertBlocks d-flex justify-content-center">
                 @for (var i = 0; i < @Model.concerts.Count; i++)
                 {
-                    <div class="ItemConcert mx-2 p-3 rounded">
-                        <p>@Model.concerts[i].ConcertName</p>
-                        <div class="concert_info">
-                            Свободные места: @Model.AvaibleTicetNow[i]
+                    @if (@Model.AvaibleTicetNow[i] > 0)
+                    {
+                        <div class="ItemConcert mx-2 p-3 rounded">
+                            <p>@Model.concerts[i].ConcertName</p>
+                            <div class="concert_info">
+                                Свободные места: @Model.AvaibleTicetNow[i]
+                            </div>
+                            <div class="concert_info">
+                                Цена билета: @Model.concerts[i].TicketPrice RUB
+                            </div>
+                            @Html.RadioButtonFor(model => model.ConcertName, @Model.concerts[i].ConcertName)
                         </div>
-                        <div class="concert_info">
-                            Цена билета: @Model.concerts[i].TicketPrice RUB
-                        </div>
-                        @Html.RadioButtonFor(model => model.ConcertName, @Model.concerts[i].ConcertName)
-                    </div>
+                    }
                 }
             </div> 
             <div class="d-flex justify-content-center">
-                <!-- Создаем flex-контейнер для кнопки -->
                 <button type="submit" class="btn btn-primary">Продолжить</button>
             </div>
         }

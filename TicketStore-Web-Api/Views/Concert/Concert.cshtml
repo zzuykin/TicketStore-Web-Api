@@ -2,4 +2,99 @@
 @using TicketStore_Web_Api.Features.DtoModels.Concerts
 @model List<ConcertDto>
 
-:)
+<style>
+
+    .ConcertBody {
+        display: flex;
+        justify-content: center;
+        height: 100vh; 
+        background-color: aliceblue;
+    }
+
+
+    .ConcertBlocks {
+        display: flex; 
+        justify-content: center; 
+        flex-wrap: wrap; 
+    }
+
+    .ItemConcert {
+        margin: 10px; 
+        padding: 20px; 
+        border-radius: 10px; 
+        background-color: #f0f0f0; 
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+        min-width: 350px;
+        transition: transform 0.3s ease;
+    }
+
+        .ItemConcert p {
+            font-weight: bold; 
+            font-size: 18px; 
+        }
+
+        .ItemConcert:hover {
+            transform: scale(1.1); 
+        }
+
+    .ConcertInfoAction{
+        margin-top: 20px;
+        display: flex; 
+        justify-content: center; 
+        flex-wrap: wrap;
+    }
+
+    .concert_continue {
+        background: #222222;
+        padding: 10px 25px;
+        border-radius: 4px;
+        font-size: 14px;
+        line-height: 18px;
+        text-align: center;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #FFFFFF;
+        display: inline-block;
+        margin-bottom: 15px;
+        margin-right: 10px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+
+        .concert_continue:hover {
+            color: #222222;
+            background-color: #CCCCCC;
+        }
+
+</style>
+
+<body class="ConcertBody">
+    <div class="container">
+        <h2>Концерты</h2>
+        <div class="ConcertBlocks d-flex justify-content-center">
+            @for (var i = 0; i < @Model.Count; i++)
+            {
+                <div class="ItemConcert mx-2 p-3 rounded">
+                    <p>@Model[i].ConcertName</p>
+                    <div class="concert_info">
+                        @if (@Model[i].AvailableTickets > 0)
+                        {
+                            <div>Свободные места: @Model[i].AvailableTickets</div>
+                        }
+                        else
+                        {
+                            <div>Нет мест</div>
+                        }
+                    </div>
+                    <div class="concert_info">
+                        Цена билета: @Model[i].TicketPrice RUB
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="ConcertInfoAction">
+            <a class="concert_continue" href="@Url.Action("Index","Home")">На главную страницу</a>
+            <a class="concert_continue" href="@Url.Action("User","Manage")">Купить билет</a>
+        </div>
+    </div>
+</body>
