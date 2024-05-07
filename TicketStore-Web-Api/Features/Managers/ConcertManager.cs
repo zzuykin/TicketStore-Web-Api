@@ -6,6 +6,7 @@ using TicketStore.Logic.Interfaces.Repositories;
 using TicketStore.Logic.Interfaces.Services;
 using TicketStore.Storage.DataBase;
 using TicketStore.Storage.Models;
+using TicketStore_Web_Api.Features.DtoModels.Concerts;
 using TicketStore_Web_Api.Features.DtoModels.Order;
 using TicketStore_Web_Api.Features.DtoModels.User;
 using TicketStore_Web_Api.Features.Interfaces.Managers;
@@ -40,6 +41,19 @@ public class ConcertManager : IConcertManager
 			editOrder.AvaibleTicetNow.Add(editOrder.concerts[i].AvailableTickets - avaible);
 		}
 		return editOrder;
+	}
+
+	public List<ConcertDto> GetListConcerts()
+	{
+		var concerts = _concertService.GetAllConcerts(_dataContext).Select(x => new ConcertDto
+		{
+			ConcertName = x.ConcertName,
+			//костыль
+			AvailableTickets = x.AvailableTickets - _dataContext.Order.Count(t => t.ConcertName == x.ConcertName),
+			TicketPrice = x.TicketPrice,
+			Number = x.Number,
+		}).ToList();
+		return concerts;
 	}
 
 	public void ChangeCountOfAvaible(EditOrder editOrder, bool minus = true)
