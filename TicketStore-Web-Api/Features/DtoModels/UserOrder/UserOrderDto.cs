@@ -15,6 +15,8 @@ public sealed record UserOrderDto
     [Required, MaxLength(255)]
     public string OrderStatus { get; init; }
 
+    [Required]
+    public int TicketPrice { get; init; }
     public Guid IsnUser { get; init; }
 
     [Required, MaxLength(255)]

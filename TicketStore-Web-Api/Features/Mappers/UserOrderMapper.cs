@@ -21,5 +21,7 @@ public class UserOrderMapper : Profile
             .ForMember(dest => dest.ClientSurname, opt => opt.MapFrom(src => src.ClientSurname))
             .ForMember(dest => dest.ClientEmail, opt => opt.MapFrom(src => src.ClientEmail))
             .ForMember(dest => dest.ClientLastName, opt => opt.MapFrom(src => src.ClientLastName));
+
+        CreateMap<Concert, EditUserOrder>().ForMember(dest => dest.TicketPrice, opt => opt.MapFrom(scr => scr.TicketPrice));
     }
 }

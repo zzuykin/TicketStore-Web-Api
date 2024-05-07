@@ -56,6 +56,10 @@
 		color:coral;
 	}
 
+	.Price{
+		font-weight: bold;
+	}
+
 	.btn {
 		margin-top: 30px;
 	}
@@ -85,6 +89,10 @@
 				<div class="UserInfoBox">
 					<div class="ConcetName">Концерт:</div>
 					<div class="UserModeInfo">@Model.ConcertName</div>
+				</div>
+				<div class="UserInfoBox">
+					<div class="ConcetPrice">Цена:</div>
+					<div class="UserModeInfo"> <div class="Price"> @Model.TicketPrice RUB</div> </div>
 				</div>
 				<div class="UserInfoBox">
 					<div class="OrderStatus">Статус заказа:</div>

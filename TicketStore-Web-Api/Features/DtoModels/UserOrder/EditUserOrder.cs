@@ -12,6 +12,9 @@ public sealed record EditUserOrder
     [Required, MaxLength(255)]
     public string ConcertName { get; init; }
 
+    [Required]
+    public int TicketPrice { get; init; }
+
     [Required, MaxLength(255)]
     public string OrderStatus { get; init; }
 

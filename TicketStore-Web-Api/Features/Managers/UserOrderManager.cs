@@ -22,10 +22,11 @@ namespace TicketStore_Web_Api.Features.Managers
         {
             var order = _dataContext.Order.FirstOrDefault(x => x.IsnNode == OrderId);
             var user = _dataContext.Users.FirstOrDefault(x => x.IsnNode == order.IsnUser);
+            var concert = _dataContext.Concerts.FirstOrDefault(x => x.ConcertName == order.ConcertName);
 
             var editUserOrder = _mapper.Map<EditUserOrder>(order);
             _mapper.Map(user, editUserOrder);
-
+            _mapper.Map(concert, editUserOrder);
             return editUserOrder;
         }
     }
