@@ -12,6 +12,8 @@
 		padding: 0;
 		height: 100%;
 	}
+
+
     .user-btn{
         background: #222222;
         padding: 10px 25px;
@@ -35,7 +37,7 @@
     }
 </style>
 <body class="register_body">
-    <div class="container">
+    <div class="OrderInfocontainer">
         <h2>Личная информация</h2>
         @using (Html.BeginForm(nameof(ManageController.CreateUserView), ManageController.Manage, FormMethod.Post))
         {

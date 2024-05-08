@@ -17,6 +17,7 @@
         display: flex;
         justify-content: center; 
         flex-wrap: wrap; 
+        margin-bottom: 30px;
     }
 
     .ItemConcert {
@@ -32,16 +33,35 @@
         .ItemConcert p {
             font-weight: bold; 
             font-size: 18px; 
+            margin-right: 10px;
         }
 
         .ItemConcert:hover {
             transform: scale(1.1);
         }
 
-    .btn {
-        display: none; 
-        margin-top: 20px; 
+    .user-btn {
+        display:none;
+        background: #222222;
+        padding: 10px 25px;
+        border-radius: 4px;
+        font-size: 14px;
+        line-height: 18px;
+        text-align: center;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #FFFFFF;
+        margin-bottom: 15px;
+        margin-right: 10px;
+        text-decoration: none;
+        border: none;
+        transition: background-color 0.3s ease;
     }
+
+        .user-btn:hover {
+            color: #222222;
+            background-color: #CCCCCC;
+        }
 
 </style>
 
@@ -70,7 +90,7 @@
                 }
             </div> 
             <div class="d-flex justify-content-center">
-                <button type="submit" class="btn btn-primary">Продолжить</button>
+                <button type="submit" class="user-btn">Продолжить</button>
             </div>
         }
     </div>
@@ -79,7 +99,7 @@
         // Показать кнопку, когда хотя бы один радио-баттон выбран
         document.addEventListener('change', function (event) {
             if (event.target.matches('input[type="radio"]')) {
-                var btn = document.querySelector('.btn');
+                var btn = document.querySelector('.user-btn');
                 btn.style.display = 'block';
             }
         });

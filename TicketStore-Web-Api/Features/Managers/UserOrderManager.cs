@@ -29,5 +29,35 @@ namespace TicketStore_Web_Api.Features.Managers
             _mapper.Map(concert, editUserOrder);
             return editUserOrder;
         }
+
+        public EditUserOrder CreateForCheck(EditUserOrder editUserOrder)
+        {
+            var order = _dataContext.Order.FirstOrDefault(x => x.OrderNum == editUserOrder.OrderNum);
+            if (order != null)
+            {
+                var user = _dataContext.Users.FirstOrDefault(x => x.IsnNode == order.IsnUser);
+                if(editUserOrder.ClientEmail == user.ClientEmail)
+                {
+					var infoUserOrder = _mapper.Map<EditUserOrder>(order);
+                    _mapper.Map(user, editUserOrder);
+                    return infoUserOrder;
+                }
+			}
+            return null;
+        }
+
+        public string GetInfo(EditUserOrder editUserOrder)
+        {
+            string result;
+            if (editUserOrder != null)
+            {
+                result = $"Статус заказа {editUserOrder.OrderNum}: концерт {editUserOrder.ConcertName} - {editUserOrder.OrderStatus}";
+            }
+            else
+            {
+                result = "Не найдено такого заказа :(";
+            }
+            return result;
+        }
     }
 }

@@ -1,0 +1,109 @@
+﻿@using TicketStore_Web_Api.Controllers
+@using TicketStore_Web_Api.Features.DtoModels.UserOrder
+
+@model EditUserOrder
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order Information</title>
+    <style>
+        .OrderInfoBody {
+            background-color: aliceblue;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        .OrderInfocontainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            flex-direction: column; /* Разместить элементы в колонку */
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            width: 250px; /* Установить фиксированную ширину формы */
+        }
+
+        .form-control {
+            margin-top: 10px;
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .user-btn {
+            background: #222222;
+            padding: 10px 25px;
+            border-radius: 4px;
+            font-size: 14px;
+            line-height: 18px;
+            text-align: center;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #FFFFFF;
+            margin-bottom: 15px;
+            margin-right: 10px;
+            text-decoration: none;
+            border: none;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+            .user-btn:hover {
+                color: #222222;
+                background-color: #CCCCCC;
+            }
+    </style>
+</head>
+<body class="OrderInfoBody">
+    <div class="OrderInfocontainer">
+        <h2>Укажите данные заказа</h2>
+        <form id="myForm">
+            <div class="form-group">
+                <label for="ClientEmail">E-mail</label>
+                <input id="ClientEmail" type="email" class="form-control" />
+                <span class="text-danger" id="ClientEmailValidation"></span>
+            </div>
+            <div class="form-group">
+                <label for="OrderNum">Номер заказа</label>
+                <input id="OrderNum" type="number" class="form-control" />
+                <span class="text-danger" id="OrderNumValidation"></span>
+            </div>
+            <button type="button" onclick="submitForm()" class="user-btn">Отправить</button>
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        function submitForm() {
+            var editUserOrder = {
+                ClientEmail: $('#ClientEmail').val(),
+                OrderNum: $('#OrderNum').val()
+            };
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("HandleFormSubmit", "UserOrder")',
+                data: JSON.stringify(editUserOrder),
+                contentType: 'application/json',
+                success: function (response) {
+                    $('#result').text(response);
+                },
+                error: function (xhr, status, error) {
+                    console.error(xhr.responseText);
+                    $('#result').text('Произошла ошибка при обработке данных.');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

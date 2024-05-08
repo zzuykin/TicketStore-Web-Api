@@ -2,6 +2,7 @@
 
 using Microsoft.AspNetCore.Mvc;
 using TicketStore_Web_Api.Features.DtoModels.User;
+using TicketStore_Web_Api.Features.DtoModels.UserOrder;
 using TicketStore_Web_Api.Features.Interfaces.Managers;
 
 namespace TicketStore_Web_Api.Controllers;
@@ -22,6 +23,20 @@ public class UserOrderController : Controller
     {
         var editUserOrder = userOrderManager.CreateInfo(OrderId);
         return View(editUserOrder);
+    }
+
+    [HttpGet(nameof(CheckInfo),Name = nameof(CheckInfo))]
+    public async Task<ActionResult> CheckInfo()
+    {
+        return View();
+    }
+
+    [HttpPost(nameof(HandleFormSubmit),Name = nameof(HandleFormSubmit))]
+    public IActionResult HandleFormSubmit([FromBody] EditUserOrder editUserOrder)
+    {
+        var infoUserOrder = userOrderManager.CreateForCheck(editUserOrder);
+        var result = userOrderManager.GetInfo(infoUserOrder);
+        return Content(result);
     }
 
     [HttpPost(nameof(UserOrderInfoView), Name = nameof(UserOrderInfoView))]
