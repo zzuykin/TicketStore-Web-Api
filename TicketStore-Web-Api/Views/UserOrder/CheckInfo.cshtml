@@ -39,6 +39,28 @@
             box-sizing: border-box;
         }
 
+        .concert_continue {
+            background: #222222;
+            padding: 10px 25px;
+            border-radius: 4px;
+            font-size: 14px;
+            line-height: 18px;
+            text-align: center;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #FFFFFF;
+            display: inline-block;
+            margin-bottom: 15px;
+            margin-right: 10px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+            .concert_continue:hover {
+                color: #222222;
+                background-color: #CCCCCC;
+            }
+
         .user-btn {
             background: #222222;
             padding: 10px 25px;
@@ -77,8 +99,12 @@
                 <input id="OrderNum" type="number" class="form-control" />
                 <span class="text-danger" id="OrderNumValidation"></span>
             </div>
-            <button type="button" onclick="submitForm()" class="user-btn">Отправить</button>
+            <button type="button" onclick="submitForm()" class="user-btn">Проверить</button>
         </form>
+
+        <div class="d-flex justify-content-center">
+            <a class="concert_continue" href="@Url.Action("Index","Home")">На главную страницу</a>
+        </div>
         <div id="result"></div>
     </div>
 

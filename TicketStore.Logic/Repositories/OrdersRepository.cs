@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Xml.Linq;
 using TicketStore.Logic.Interfaces.Repositories;
 using TicketStore.Storage.DataBase;
 using TicketStore.Storage.Models;
@@ -33,7 +34,16 @@ namespace TicketStore.Logic.Repositories
             dataContext.Order.Remove(ordeDb);
         }
 
-        public Orders GetById(DataContext dataContext, Guid IsnNode)
+		public void Delete(DataContext dataContext, int orderNum)
+		{
+			var ordeDb = dataContext.Order.FirstOrDefault(x => x.OrderNum == orderNum)
+				?? throw new Exception($"User с заказом {orderNum} не найден");
+
+			dataContext.Order.Remove(ordeDb);
+			dataContext.SaveChanges();
+		}
+
+		public Orders GetById(DataContext dataContext, Guid IsnNode)
         {
             var orderDb = dataContext.Order.AsNoTracking().FirstOrDefault(x => x.IsnNode == IsnNode)
                 ?? throw new Exception($"User с индификатором {IsnNode} не найден");

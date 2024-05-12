@@ -1,0 +1,42 @@
+﻿@using TicketStore_Web_Api.Controllers
+
+<!DOCTYPE html>
+<style>
+
+    .NotFoundText{
+        margin-bottom:30px;
+    }
+    .continue {
+        background: #222222;
+        padding: 10px 25px;
+        border-radius: 4px;
+        font-size: 14px;
+        line-height: 18px;
+        text-align: center;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #FFFFFF;
+        display: block;
+        margin-bottom: 15px;
+        margin-right: 10px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+
+        .continue:hover {
+            color: #222222;
+            background-color: #CCCCCC;
+        }
+</style>
+<html lang="en">
+	<div class="NotFoundBody">
+		<div class="NotFoundText">
+			<h1>Заказ не был найден :(</h1>
+		</div>
+	<div class="d-flex justify-content-center">
+		<a class="continue" href="@Url.Action("Index","Home")">На главную страницу</a>
+		<a class="continue" href="@Url.Action("ChangeOrder","UserOrder")">Поробовать снова</a>
+	</div>
+	</div>
+</html>
+

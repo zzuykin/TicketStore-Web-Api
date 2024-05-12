@@ -1,0 +1,83 @@
+﻿@using TicketStore_Web_Api.Controllers
+@using TicketStore_Web_Api.Features.DtoModels.UserOrder
+
+@model EditUserOrder
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        .ChangeOrderBody {
+            display: flex;
+            background-color: aliceblue;
+            margin: 0;
+            padding: 0;
+            height: 100vh; /* Высота окна браузера */
+            justify-content: center;
+        }
+
+        .ChangeOrderForm {
+            width: 250px; /* Ширина формы */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Центрировать элементы по горизонтали */
+        }
+
+        .ChangeOrderInfoBox {
+            margin-bottom: 20px;
+            width: 100%; /* Ширина блока с информацией */
+        }
+
+            .ChangeOrderInfoBox label {
+                display: block; /* Показать каждый label на новой строке */
+                margin-bottom: 5px; /* Отступ между label и полем ввода */
+            }
+
+        .ChangeOrderBut {
+            width: 100%; /* Ширина блока с кнопкой */
+        }
+
+        .user-btn {
+            background: #222222;
+            padding: 10px 25px;
+            border-radius: 4px;
+            font-size: 14px;
+            line-height: 18px;
+            text-align: center;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #FFFFFF;
+            border: none;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+            .user-btn:hover {
+                background-color: #CCCCCC;
+            }
+    </style>
+</head>
+<div class="ChangeOrderBody">
+    <div class="ChangeOrderForm">
+        @using (Html.BeginForm(nameof(UserOrderController.SendOrderToChange), UserOrderController.UserOrder, FormMethod.Post))
+        {
+            <h2>Укажите данные заказа</h2>
+            <div class="ChangeOrderInfoBox">
+                @Html.LabelFor(x => x.ClientEmail, "Email")
+                @Html.TextBoxFor(x => x.ClientEmail, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.ClientEmail, "Обязательное поле")
+            </div>
+            <div class="ChangeOrderInfoBox">
+                @Html.LabelFor(x => x.OrderNum, "Номер заказа")
+                <input type="number" id="OrderNum" class="form-control" name="OrderNum" />
+                @Html.ValidationMessageFor(x => x.OrderNum, "Обязательное поле")
+            </div>
+            <div class="ChangeOrderBut">
+                <button type="submit" class="user-btn">Продолжить</button>
+            </div>
+        }
+    </div>
+</div>
+</html>

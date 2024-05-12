@@ -1,0 +1,62 @@
+﻿@using TicketStore_Web_Api.Controllers
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .SuccesBody {
+            display: flex;
+            flex-direction: column;
+/*             justify-content: center; */
+            align-items: center;
+            height: 100vh;
+            background-color: aliceblue;
+            margin: 0;
+            padding: 0;
+        }
+
+        .SucsessText {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .SucccesBtn {
+            text-align: center;
+        }
+
+        .user-btn {
+            background: #222222;
+            padding: 10px 25px;
+            border-radius: 4px;
+            font-size: 14px;
+            line-height: 18px;
+            text-align: center;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #FFFFFF;
+            border: none;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+            .user-btn:hover {
+                background-color: #CCCCCC;
+            }
+    </style>
+</head>
+<div>
+    <div class="SuccesBody">
+        <div class="SucsessText">
+            <h1>Вы успешно удалили свой заказ!</h1>
+        </div>
+        @using (Html.BeginForm(nameof(UserOrderController.UserOrderInfoView), UserOrderController.UserOrder, FormMethod.Post))
+        {
+            <div class="SucccesBtn">
+                <button type="submit" class="user-btn">На главную страницу</button>
+            </div>
+        }
+    </div>
+</div>
+</html>

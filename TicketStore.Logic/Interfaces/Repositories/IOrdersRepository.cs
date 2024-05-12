@@ -8,7 +8,9 @@ public interface IOrdersRepository
 {
     Orders Create(DataContext dataContext, Orders order);
     void Delete(DataContext dataContext, Guid Isnode);
-    Orders GetById(DataContext dataContext, Guid IsnNode);
+
+    void Delete(DataContext dataContext, int orderNum);
+	Orders GetById(DataContext dataContext, Guid IsnNode);
     Orders Update(DataContext dataContext, Orders order);
 
 }

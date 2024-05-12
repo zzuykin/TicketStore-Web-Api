@@ -1,5 +1,6 @@
 ﻿
 
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace TicketStore_Web_Api.Features.DtoModels.UserOrder;
@@ -29,6 +30,8 @@ public sealed record EditUserOrder
     [Required, MaxLength(255)]
     public string ClientEmail { get; init; }
 
-    [Required, MaxLength(255)]
+    [MaxLength(255)]
+    [DisplayName("Отчество")]
+    [DefaultValue("Отсутствует")]
     public string ClientLastName { get; init; }
 }

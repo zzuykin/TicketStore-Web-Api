@@ -8,6 +8,8 @@ public interface IUserOrderManager
 {
     EditUserOrder CreateForCheck(EditUserOrder editUserOrder);
     EditUserOrder CreateInfo(Guid OrderId);
-
+    EditUserOrder CreateInfo(int orderNum);
     string GetInfo(EditUserOrder editUserOrder);
+
+    void DeleteOrder(int orderNum);
 }
