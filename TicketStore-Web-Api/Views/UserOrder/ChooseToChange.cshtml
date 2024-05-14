@@ -133,6 +133,15 @@
 		{
 			@Html.HiddenFor(model => model.OrderNum)
 			@Html.HiddenFor(model => model.ClientEmail)
+			@Html.HiddenFor(model => model.IsnUser)
+			<div class="d-flex justify-content-center">
+				<button type="submit" class="user-btn">Изменить заказ</button>
+			</div>
+		}
+		@using (Html.BeginForm(nameof(UserOrderController.DeleteOrderBtn), UserOrderController.UserOrder, FormMethod.Post))
+		{
+			@Html.HiddenFor(model => model.OrderNum)
+			@Html.HiddenFor(model => model.ClientEmail)
 			<div class="d-flex justify-content-center">
 				<button type="submit" class="user-btn">Удалить заказ</button>
 			</div>

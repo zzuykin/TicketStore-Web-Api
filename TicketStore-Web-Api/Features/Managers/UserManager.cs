@@ -55,10 +55,10 @@ public class UserManager : IUserManager
 
     }
 
-    public UserDto GetUser(Guid isnNode)
+    public EditUser GetUser(Guid isnNode)
     {
         var user = _userRepository.GetById(_dataContext, isnNode);
-        return _mapper.Map<UserDto>(user);
+        return _mapper.Map<EditUser>(user);
     }
 
     public UserDto[] GetListUsers(UserFilterDto userFilterDto)

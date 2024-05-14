@@ -52,11 +52,23 @@ public class ManageController: Controller
 		}
     }
 
-    [HttpPut(nameof(UpdateUser), Name = nameof(UpdateUser))]
-    public async Task<ActionResult> UpdateUser([FromBody] EditUser user)
+    [HttpGet(nameof(ChangeUser), Name = nameof(ChangeUser))]
+    public async Task<ActionResult> ChangeUser(Guid isnUser)
+    {
+        var user = userManager.GetUser(isnUser);
+        return View(user);
+    }
+
+    [HttpPost(nameof(UpdateUser), Name = nameof(UpdateUser))]
+    public async Task<ActionResult> UpdateUser(EditUser user)
     {
         userManager.Update(user);
-        return Ok();
+        return RedirectToAction(nameof(ManageController.SuccesChange), ManageController.Manage);
+    }
+
+    public async Task<ActionResult> SuccesChange()
+    {
+        return View();
     }
 
     [HttpPut(nameof(DeleteUser), Name = nameof(DeleteUser))]

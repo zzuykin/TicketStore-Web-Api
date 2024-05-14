@@ -11,18 +11,28 @@
     <style>
         .ChangeOrderBody {
             display: flex;
+            flex-direction:column;
             background-color: aliceblue;
             margin: 0;
             padding: 0;
             height: 100vh; /* Высота окна браузера */
-            justify-content: center;
+            /* justify-content: center; */
+            align-items:center;
         }
-
+        .ChangeOrderBody h2{
+            margin-bottom: 20px;
+        }
         .ChangeOrderForm {
             width: 250px; /* Ширина формы */
             display: flex;
             flex-direction: column;
-            align-items: center; /* Центрировать элементы по горизонтали */
+            align-items: center;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px; 
+            display:inline-block;
         }
 
         .ChangeOrderInfoBox {
@@ -60,10 +70,10 @@
     </style>
 </head>
 <div class="ChangeOrderBody">
+    <h2>Укажите данные заказа</h2>
     <div class="ChangeOrderForm">
         @using (Html.BeginForm(nameof(UserOrderController.SendOrderToChange), UserOrderController.UserOrder, FormMethod.Post))
         {
-            <h2>Укажите данные заказа</h2>
             <div class="ChangeOrderInfoBox">
                 @Html.LabelFor(x => x.ClientEmail, "Email")
                 @Html.TextBoxFor(x => x.ClientEmail, new { @class = "form-control" })

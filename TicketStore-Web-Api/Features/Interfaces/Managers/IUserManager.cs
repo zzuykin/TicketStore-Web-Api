@@ -16,7 +16,7 @@ namespace TicketStore_Web_Api.Features.Interfaces.Managers
 
         void Delete(Guid InsNode);
 
-        UserDto GetUser(Guid isnNode);
+        EditUser GetUser(Guid isnNode);
 
         UserDto[] GetListUsers(UserFilterDto userFilterDto);
     }

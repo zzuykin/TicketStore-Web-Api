@@ -20,10 +20,11 @@
         }
 
         .CheckEmailForm {
+            display: inline-block;
             width: 250px; /* Ширина формы */
             display: flex;
             flex-direction: column;
-            align-items: center; /* Центрировать элементы по горизонтали */
+            align-items: center;
         }
 
         .CheckEmailText {
@@ -31,7 +32,13 @@
 /*             width: 100%; /* Ширина блока с текстом */ */
         }
 
-
+        .CheckBox{
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
 
         .CheckEmailBox {
             margin-bottom: 20px;
@@ -64,20 +71,46 @@
 </head>
 <div class="CheckEmailBody">
     <div class="CheckEmailForm">
-        @using (Html.BeginForm(nameof(UserOrderController.CheckEmail), UserOrderController.UserOrder, FormMethod.Post))
+        @if(Model.IsnUser == Guid.Empty)
         {
-            @Html.HiddenFor(model => model.OrderNum)
-            @Html.HiddenFor(model => model.ClientEmail)
-            <div class="CheckEmailText">
-                <h2>Вам на Email @Model.ClientEmail был выслан код подтверждения</h2>
-                <p>Введите код <span>(введите 2222)</span></p>
-            </div>
-            <div class="CheckEmailBox">
-                @Html.TextBox("code", null, new { @class = "form-control" })
-            </div>
-            <div class="CheckEmailBut">
-                <button type="submit" class="user-btn">Продолжить</button>
-            </div>
+            @using (Html.BeginForm(nameof(UserOrderController.CheckEmailTodDel), UserOrderController.UserOrder, FormMethod.Post))
+            {
+                @Html.HiddenFor(model => model.OrderNum)
+                @Html.HiddenFor(model => model.ClientEmail)
+                <div class="CheckEmailText">
+                    <h2>Вам на Email @Model.ClientEmail был выслан код подтверждения</h2>
+                </div>
+                <div class="CheckBox">
+                    <p>Введите код <span>(введите 2222)</span></p>
+                    <div class="CheckEmailBox">
+                        @Html.TextBox("code", null, new { @class = "form-control" })
+                    </div>
+                    <div class="CheckEmailBut">
+                        <button type="submit" class="user-btn">Продолжить</button>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            @using (Html.BeginForm(nameof(UserOrderController.CheckEmailToChange), UserOrderController.UserOrder, FormMethod.Post))
+            {
+                @Html.HiddenFor(model => model.OrderNum)
+                @Html.HiddenFor(model => model.ClientEmail)
+                @Html.HiddenFor(model => model.IsnUser)
+                <div class="CheckEmailText">
+                    <h2>Вам на Email @Model.ClientEmail был выслан код подтверждени</h2>
+                </div>
+                <div class="CheckBox">
+                    <p>Введите код <span>(введите 2222)</span></p>
+                    <div class="CheckEmailBox">
+                        @Html.TextBox("code", null, new { @class = "form-control" })
+                    </div>
+                    <div class="CheckEmailBut">
+                        <button type="submit" class="user-btn">Продолжить</button>
+                    </div>
+                </div>
+            }
         }
     </div>
 </div>

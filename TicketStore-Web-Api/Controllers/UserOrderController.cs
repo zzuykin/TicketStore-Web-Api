@@ -1,7 +1,6 @@
 ﻿
 
 using Microsoft.AspNetCore.Mvc;
-using TicketStore_Web_Api.Features.DtoModels.User;
 using TicketStore_Web_Api.Features.DtoModels.UserOrder;
 using TicketStore_Web_Api.Features.Interfaces.Managers;
 
@@ -72,8 +71,6 @@ public class UserOrderController : Controller
 	[HttpPost(nameof(DeleteOrderBtn), Name = nameof(DeleteOrderBtn))]
 	public async Task<ActionResult> DeleteOrderBtn(EditUserOrder editUserOrder)
     {
-  //      userOrderManager.DeleteOrder(editUserOrder.OrderNum);
-		//return RedirectToAction(nameof(HomeController.Index), "Home");
         return RedirectToAction(nameof(UserOrderController.CheckEmailView), UserOrderController.UserOrder, editUserOrder);
 	}
 
@@ -83,8 +80,8 @@ public class UserOrderController : Controller
         return View(editUserOrder);
     }
 
-	[HttpPost(nameof(CheckEmail), Name = nameof(CheckEmail))]
-	public async Task<ActionResult> CheckEmail(EditUserOrder editUserOrder, string code)
+	[HttpPost(nameof(CheckEmailTodDel), Name = nameof(CheckEmailTodDel))]
+	public async Task<ActionResult> CheckEmailTodDel(EditUserOrder editUserOrder, string code)
     {
         if (code == "2222")
         {
@@ -94,27 +91,23 @@ public class UserOrderController : Controller
 		return RedirectToAction(nameof(UserOrderController.CheckEmailView), UserOrderController.UserOrder, editUserOrder);
 	}
 
-	[HttpGet(nameof(SuccesDel), Name = nameof(SuccesDel))]
+    [HttpPost(nameof(CheckEmailToChange), Name = nameof(CheckEmailToChange))]
+    public async Task<ActionResult> CheckEmailToChange(EditUserOrder editUserOrder, string code)
+    {
+        if (code == "2222")
+        {
+            return RedirectToAction(nameof(ManageController.ChangeUser), ManageController.Manage, new { isnUser = editUserOrder.IsnUser });
+        }
+        return RedirectToAction(nameof(UserOrderController.CheckEmailView), UserOrderController.UserOrder, editUserOrder);
+    }
+
+
+    [HttpGet(nameof(SuccesDel), Name = nameof(SuccesDel))]
 	public async Task<ActionResult> SuccesDel()
     {
         return View();
     }
 
-	//[HttpPost(nameof(SendOrderToChange), Name = nameof(SendOrderToChange))]
-	//public IActionResult SendOrderToChange([FromBody] EditUserOrder editUserOrder)
-	//{
-	//    var infoUserOrder = userOrderManager.CreateForCheck(editUserOrder);
-	//    var orderNum = editUserOrder.OrderNum;
-	//    // return RedirectToAction(nameof(UserOrderController.ChangeOrderView), UserOrderController.UserOrder, infoUserOrder);
-	//    var url = Url.Action("ChangeOrderView", "UserOrder", editUserOrder);
-	//    return Content(url);
-	//}
-
-	//[HttpGet(nameof(ChangeOrderView), Name = nameof(ChangeOrderView))]
-	//public async Task<ActionResult> ChangeOrderView(EditUserOrder editUserOrder)
-	//{
-	//    return View();
-	//}
 
 	[HttpPost(nameof(UserOrderInfoView), Name = nameof(UserOrderInfoView))]
     public async Task<ActionResult> UserOrderInfoView()
@@ -123,5 +116,3 @@ public class UserOrderController : Controller
     }
 }
 
-
-//            @using (Html.BeginForm(nameof(UserOrderController.SendOrderToChange), UserOrderController.UserOrder, FormMethod.Post))

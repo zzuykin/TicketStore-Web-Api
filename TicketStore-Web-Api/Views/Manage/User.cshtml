@@ -4,68 +4,110 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<style>
-	.register_body{
-        background-color: aliceblue;
-		;
-		margin: 0;
-		padding: 0;
-		height: 100%;
-	}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .register_body {
+            display: flex;
+            flex-direction:column;
+            margin-top:20px;
+            /* justify-content: center; */
+            align-items: center;
+            height: 100vh;
+            background-color: aliceblue;
+            margin: 0;
+            padding: 0;
+        }
 
+        .OrderInfocontainer {
+            width: 300px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
-    .user-btn{
-        background: #222222;
-        padding: 10px 25px;
-        border-radius: 4px;
-        font-size: 14px;
-        line-height: 18px;
-        text-align: center;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        color: #FFFFFF;
-        margin-bottom: 15px;
-        margin-right: 10px;
-        text-decoration: none;
-        border:none;
-        transition: background-color 0.3s ease;
-    }
+            .OrderInfocontainer h2 {
+                text-align: center;
+                margin-bottom: 20px;
+            }
 
-        .user-btn:hover {
-        color: #222222;
-        background-color: #CCCCCC;
-    }
-</style>
-<body class="register_body">
-    <div class="OrderInfocontainer">
-        <h2>Личная информация</h2>
-        @using (Html.BeginForm(nameof(ManageController.CreateUserView), ManageController.Manage, FormMethod.Post))
-        {
-            <div class="row justify-content-center">
-                <div class="col-md-6">
-                    <div class="form-group mb-4">
+        .UserForm {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .userBox {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .user-btn {
+            background: #222222;
+            padding: 10px 25px;
+            border-radius: 4px;
+            font-size: 14px;
+            line-height: 18px;
+            text-align: center;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #FFFFFF;
+            border: none;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            width: 100%;
+        }
+
+            .user-btn:hover {
+                background-color: #CCCCCC;
+            }
+    </style>
+</head>
+<div>
+    <div class="register_body">
+        <div class="OrderInfocontainer">
+            <h2>Личная информация</h2>
+            @using (Html.BeginForm(nameof(ManageController.CreateUserView), ManageController.Manage, FormMethod.Post))
+            {
+                <div class="UserForm">
+                    <div class="userBox">
                         @Html.LabelFor(x => x.ClientName, "Имя")
-                        @Html.TextBoxFor(x => x.ClientName, new { @class = "form-control mt-2" }) <!-- Добавляем отступ между лейблом и текстовым полем -->
+                        @Html.TextBoxFor(x => x.ClientName, new { @class = "form-control mt-2" })
                         @Html.ValidationMessageFor(x => x.ClientName)
                     </div>
-                    <div class="form-group mb-4">
+                    <div class="userBox">
                         @Html.LabelFor(x => x.ClientSurname, "Фамилия")
-                        @Html.TextBoxFor(x => x.ClientSurname, new { @class = "form-control mt-2" }) <!-- Добавляем отступ между лейблом и текстовым полем -->
+                        @Html.TextBoxFor(x => x.ClientSurname, new { @class = "form-control mt-2" })
                         @Html.ValidationMessageFor(x => x.ClientSurname)
                     </div>
-                    <div class="form-group mb-4">
+                    <div class="userBox">
                         @Html.LabelFor(x => x.ClientLastName, "Отчество")
-                        @Html.TextBoxFor(x => x.ClientLastName, new { @class = "form-control mt-2" }) <!-- Добавляем отступ между лейблом и текстовым полем -->
-@*                         @Html.ValidationMessageFor(x => x.ClientLastName) *@
+                        @Html.TextBoxFor(x => x.ClientLastName, new { @class = "form-control mt-2" })
+                        @* @Html.ValidationMessageFor(x => x.ClientLastName) *@
                     </div>
-                    <div class="form-group mb-4">
+                    <div class="userBox">
                         @Html.LabelFor(x => x.ClientEmail, "E-mail")
-                        @Html.TextBoxFor(x => x.ClientEmail, new { @class = "form-control mt-2" }) <!-- Добавляем отступ между лейблом и текстовым полем -->
+                        @Html.TextBoxFor(x => x.ClientEmail, new { @class = "form-control mt-2" })
                         @Html.ValidationMessageFor(x => x.ClientEmail)
                     </div>
                     <button type="submit" class="user-btn">Продолжить</button>
                 </div>
-            </div>
-        }
+            }
+        </div>
     </div>
-</body>
+</div>
+</html>
